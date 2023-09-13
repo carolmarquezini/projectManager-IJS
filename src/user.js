@@ -7,6 +7,9 @@ class User {
     email;
 
     constructor(id, name, cpf, contact, email) {
+        if(!id || !name || !cpf || !contact || !email ) {
+            throw new Error ("Dados inválidos!");
+        }
         this.#id = id;
         this.name = name;
         this.cpf = cpf;
