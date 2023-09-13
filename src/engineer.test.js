@@ -7,7 +7,7 @@ describe("Verificar Engenheiro(a)", () => {
     })
 
     it("Retornar válido quando todos atribudos do construtor são passados", () => {
-        let user = new Engineer(1,'Carol', 123456, 9999999, '@gmail', 202320);
-        expect(() => user).not.toThrow()
+        let engineer = new Engineer(1,'Carol', 123456, 9999999, '@gmail', 202320);
+        expect(() => engineer).not.toThrow()
     } )
 })
