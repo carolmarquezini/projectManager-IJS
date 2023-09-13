@@ -7,7 +7,7 @@ describe("Verificar Arquiteto(a)", () => {
     })
 
     it("Retornar válido quando todos atribudos do construtor são passados", () => {
-        let user = new Architect(1,'Carol', 123456, 9999999, '@gmail', 202320);
-        expect(() => user).not.toThrow()
+        let architect = new Architect(1,'Carol', 123456, 9999999, '@gmail', 202320);
+        expect(() => architect).not.toThrow()
     } )
 })
