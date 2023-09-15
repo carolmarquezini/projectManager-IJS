@@ -1,7 +1,7 @@
-const { Architect } = require('./architect');
-const { Engineer } = require('./engineer');
+const { Arquiteto } = require('./arquiteto');
+const { Engenheiro } = require('./engenheiro');
 
-class Project {
+class Projeto {
     #id;
     #technicalManager;
     #architect
@@ -11,11 +11,11 @@ class Project {
     listMaintenance = [];
 
     constructor(id, technicalManager, architect, address, serviceProvider, status, maintenanceList) {
-        if (!(technicalManager instanceof Engineer)) {
+        if (!(technicalManager instanceof Engenheiro)) {
             throw new Error("Informe um responsável técnico válido!");
         }
 
-        if (!(architect instanceof Architect)) {
+        if (!(architect instanceof Arquiteto)) {
             throw new Error("Informe um responsável técnico válido!");
         }
 
@@ -78,5 +78,5 @@ class Project {
 }
 
 module.exports = {
-    Project
+    Projeto
 }

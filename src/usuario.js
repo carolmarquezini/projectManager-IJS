@@ -1,19 +1,19 @@
-class User {
+class Usuario {
 
     #id;
-    name;
+    nome;
     cpf;
-    contact;
+    telefone;
     email;
 
-    constructor(id, name, cpf, contact, email) {
-        if(!id || !name || !cpf || !contact || !email ) {
+    constructor(id, nome, cpf, telefone, email) {
+        if(!id || !nome || !cpf || !telefone || !email ) {
             throw new Error ("Dados inválidos!");
         }
         this.#id = id;
-        this.name = name;
+        this.nome = nome;
         this.cpf = cpf;
-        this.contact = contact;
+        this.telefone = telefone;
         this.email = email;
     }
 
@@ -25,8 +25,8 @@ class User {
         return this.cpf;
     }
 
-    get contact() {
-        return this.contact;
+    get contato() {
+        return this.telefone;
     }
 
     get email() {
@@ -36,5 +36,5 @@ class User {
 }
 
 module.exports = {
-    User
+    Usuario
 }
