@@ -3,35 +3,35 @@ const { Engenheiro } = require('./engenheiro');
 
 class Projeto {
     #id;
-    #technicalManager;
-    #architect
-    address;
-    serviceProvider;
+    #engenheiroResponsavel;
+    #arquitetoResponsavel;
+    enderecoObra;
+    empreiteiroObra;
     status;
-    listMaintenance = [];
+    listaDeManutencoes = [];
 
-    constructor(id, technicalManager, architect, address, serviceProvider, status, maintenanceList) {
-        if (!(technicalManager instanceof Engenheiro)) {
+    constructor(id, engenheiroResponsavel, arquitetoResponsavel, enderecoObra, empreiteiroObra, status, listaDeManutencao) {
+        if (!(engenheiroResponsavel instanceof Engenheiro)) {
             throw new Error("Informe um responsável técnico válido!");
         }
 
-        if (!(architect instanceof Arquiteto)) {
+        if (!(arquitetoResponsavel instanceof Arquiteto)) {
             throw new Error("Informe um responsável técnico válido!");
         }
 
-        if (!id || !technicalManager || !address ) {
+        if (!id || !engenheiroResponsavel || !enderecoObra) {
             throw new Error("Dados inválidos!");
         }
         this.#id = id;
-        this.#technicalManager = technicalManager;
-        this.#architect = architect;
-        this.address = address;
-        this.serviceProvider = serviceProvider;
+        this.#engenheiroResponsavel = engenheiroResponsavel;
+        this.#arquitetoResponsavel = arquitetoResponsavel;
+        this.enderecoObra = enderecoObra;
+        this.empreiteiroObra = empreiteiroObra;
         this.status = status;
-        this.listMaintenance = this.listMaintenance;
+        this.listaDeManutencoes = [];
 
-        if(maintenanceList){
-            this.listMaintenance.push(maintenanceList)
+        if (listaDeManutencao) {
+            this.listaDeManutencoes.push(listaDeManutencao)
         }
     }
 
@@ -39,40 +39,49 @@ class Projeto {
         return this.#id;
     }
 
-    get technicalManager() {
-        return this.#technicalManager;
+    get engenheiroResponsavel() {
+        return this.#engenheiroResponsavel;
     }
-    
-    get address() {
-        return this.address;
+
+    get enderecoObra() {
+        return this.enderecoObra;
     }
-    
-    set address(newAddress) {
-        return this.address = newAddress;
+
+    set enderecoObra(novoEndereco) {
+        return this.enderecoObra = novoEndereco;
     }
-    
-    get serviceProvider() {
-        return this.serviceProvider;
+
+    get empreiteiroObra() {
+        return this.empreiteiroObra;
     }
-    
-    set serviceProvider(name) {
-        return this.serviceProvider = name;
+
+    set empreiteiroObra(nome) {
+        return this.empreiteiroObra = nome;
     }
-    
+
     get status() {
         return this.status;
     }
-    
-    set status(newStatus) {
-        return this.status = newStatus;
+
+    set status(novoStatus) {
+        return this.status = novoStatus;
     }
 
-    addMaintenance(date, service){
-        this.listMaintenance.push({date,service});
+    addManutencao(data, servico) {
+
+        const manutencao = { data, servico };
+        this.listaDeManutencoes.push(manutencao);
     }
 
-    getAllMaintenance(){
-        return this.listMaintenance;
+    todasManutencoes() {
+        return this.listaDeManutencoes;
+    }
+
+    ultimaManutencao() {
+        if(this.listaDeManutencoes == null || this.listaDeManutencoes.length == 0 ){
+            return null
+        }
+        return this.listaDeManutencoes[this.listaDeManutencoes.length-1]
     }
 
 }

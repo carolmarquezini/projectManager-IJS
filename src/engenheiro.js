@@ -11,8 +11,23 @@ class Engenheiro extends Usuario {
         this.crea = crea;
     }
 
+    get cre(){
+        return this.crea;
+    }
+
+    exibirDados() {
+        console.log(`Id Engenheiro: ${this.id}`);
+        console.log(`Nome Engenheiro: ${this.nome}`);
+        console.log(`CPF: ${this.cpf}`);
+        console.log(`CREA: ${this.crea}`);
+        console.log(`e-mail: ${this.email}`);        
+      }
+
 }
+
+
 
 module.exports = {
     Engenheiro
 }
+
