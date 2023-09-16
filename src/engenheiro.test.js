@@ -2,7 +2,6 @@ const { Engenheiro } = require('./engenheiro')
 
 describe("Verificar Engenheiro(a)", () => {
     it("Retornar inválido caso não seja passado os atributos do construtor", () => {
-        //let user = new User(1,'Carol', 123456, 9999999, '@gmail');
         expect(() => new Engenheiro('Carol', 123456, 9999999, '@gmail')).toThrow("Dados inválidos!")
     })
 
