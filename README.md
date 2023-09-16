@@ -43,11 +43,9 @@ Portanto, as soluções selecionadas incluem a criação e manutenção de proje
 ---
 ## Funcionalidades
 
-**Funcionalidades de Usuários:**
+## Funcionalidades de Usuários:
 
-A classe `Usuários` é a classe pai que os principais atributos que deve ter este objetos.
-
-Considerando os principios de POO, `Usuários` é a **abstração**.
+A classe `Usuários` representa os usuários do sistema e inclui os principais atributos necessários para criar um usuário. Ela **encapsula** os detalhes dos dados do usuário em um único objeto.
 
 | Função                 | Descrição             | 
 | ---------------------- | ----------------------|
@@ -59,31 +57,78 @@ Considerando os principios de POO, `Usuários` é a **abstração**.
 | exibirDados()          | exibi todos os dados  | 
 
 
-**Funcionalidades de Engenheiro:**
+## Funcionalidades de Engenheiro:
 
-Representando o conceito de **Herança** classe `Engenheiros` herda a classe `Usuários`.
+A classe `Engenheiro` herda da classe `Usuario`, o que representa o conceito de **herança** em POO. Isso permite que a classe Engenheiro compartilhe atributos e métodos comuns com a classe `Usuario`.
 
-| Função                | Descrição            | 
-| --------------------- | ---------------------|
-| get crea ()           | Retorna crea         | 
-| exibirDados()         | exibi todos os dados | 
+```jsx
+const { Usuario } = require('./usuario');
+
+class Engenheiro extends Usuario {
+    crea;
+
+    constructor(id, nome, cpf, telefone, email, crea) {
+        super(id, nome, cpf, telefone, email)
+        if (!id || !nome || !cpf || !telefone || !email || !crea) {
+            throw new Error("Dados inválidos!");
+        }
+        this.crea = crea;
+    }
+
+    get crea() {
+        return this.crea;
+    }
+
+    exibirDados() {
+        super.exibirDados();
+        console.log(`CREA: ${this.crea}`);
+    }
+
+}
 
 
-**Funcionalidades de Arquiteto:**
 
-A classe `Arquiteto` herda `Usuário`, assim como `Engenheiro` e com `super.exibirDados()` é possível notar que será acrescentado o CAU do Arquiteto, representando assim o **Polimorfismo**.
+module.exports = {
+    Engenheiro
+}
+```
 
-| Função                | Descrição            | 
-| --------------------- | ---------------------|
-| get cau ()            | Retorna cau          | 
-| exibirDados()         | exibi todos os dados | 
+## Funcionalidades de Arquiteto:
 
-**Funcionalidades de Projetos:**
+A classe `Arquiteto` também herda de `Usuário` e, com o uso de `super.exibirDados()`, é possível notar a inclusão do número de CAU do arquiteto, demonstrando assim o Polimorfismo.
 
-O conceito de **composição** é representado na classe `Projetos`, pois ele recebe o arquiteto e o engenheiro. 
+```jsx
+const { Usuario } = require('./usuario');
 
-Na classe `Projetos` tem funcionalidades que devem contribuir para definir se um projeto é ecológico ou não, adiciona as caracteristicas, acompanha e atualiza manutenções.
+class Arquiteto extends Usuario {
+    cau;
 
+    constructor(id, nome, cpf, telefone, email, cau) {
+        super(id, nome, cpf, telefone, email)
+        if (!id || !nome || !cpf || !telefone || !email || !cau) {
+            throw new Error("Dados inválidos!");
+        }
+        this.cau = cau;
+    }
+
+    get cau() {
+        return this.cau;
+    }
+
+    exibirDados() {
+        super.exibirDados();
+        console.log(`CAU: ${this.cau}`);
+
+    }
+
+}
+```
+
+## Funcionalidades de Projetos:
+
+A classe `Projetos` representa o conceito de **composição**, pois ela inclui arquitetos e engenheiros. Possui funcionalidades que auxiliam na determinação se um projeto é ecológico ou não, adicionando características, acompanhando e atualizando manutenções.
+
+**Adicionar Características Ecológicas**
 ```jsx
     addCaracteristicasEco(caracteristicasEco) {
         if (this.listaDeCaracteristicasEco == null) {
@@ -93,6 +138,10 @@ Na classe `Projetos` tem funcionalidades que devem contribuir para definir se um
         this.listaDeCaracteristicasEco.push(caracteristicasEco)
     }
 ```
+Este método adiciona características ecológicas a um projeto. Se a lista de características ecológicas ainda não existe, ela é inicializada.
+
+
+**Verificar se um Projeto é Ecológico**
 
 ```jsx
     projetoEcologico() {
@@ -116,6 +165,10 @@ Na classe `Projetos` tem funcionalidades que devem contribuir para definir se um
     }
 
 ```
+Este método verifica se um projeto é ecológico com base nas características ecológicas definidas. Para ser considerado ecológico, o projeto deve atender a pelo menos 4 requisitos ecológicos.
+
+
+**Adicionar Manutenção**
 
 ```jsx
     addManutencao(data, servico) {
@@ -134,6 +187,10 @@ Na classe `Projetos` tem funcionalidades que devem contribuir para definir se um
         return this.listaDeManutencoes;
     }
 ```
+Este método retorna uma lista de todas as manutenções registradas para o projeto.
+
+
+**Última Manutenção**
 
 ```jsx
     ultimaManutencao() {
@@ -145,6 +202,9 @@ Na classe `Projetos` tem funcionalidades que devem contribuir para definir se um
 
 }
 ```
+Este método retorna informações sobre a última manutenção registrada no projeto.
+
+---
 
 ## Testes
 
