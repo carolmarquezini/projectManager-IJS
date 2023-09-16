@@ -7,8 +7,8 @@ class Usuario {
     email;
 
     constructor(id, nome, cpf, telefone, email) {
-        if(!id || !nome || !cpf || !telefone || !email ) {
-            throw new Error ("Dados inválidos!");
+        if (!id || !nome || !cpf || !telefone || !email) {
+            throw new Error("Dados inválidos!");
         }
         this.#id = id;
         this.nome = nome;
@@ -29,7 +29,7 @@ class Usuario {
         return this.telefone;
     }
 
-    set contato(novoContato){
+    set contato(novoContato) {
         return this.telefone = novoContato;
     }
 
@@ -39,6 +39,14 @@ class Usuario {
 
     set email(novoEmail) {
         return this.email = novoEmail;
+    }
+
+    exibirDados() {
+        console.log(`Id: ${this.id}`);
+        console.log(`Nome: ${this.nome}`);
+        console.log(`CPF: ${this.cpf}`);
+        console.log(`Telefone: ${this.telefone}`);
+        console.log(`e-mail: ${this.email}`);
     }
 
 }

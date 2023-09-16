@@ -5,10 +5,20 @@ class Arquiteto extends Usuario {
 
     constructor(id, nome, cpf, telefone, email, cau) {
         super(id, nome, cpf, telefone, email)
-        if(!id || !nome || !cpf || !telefone || !email || !cau) {
-            throw new Error ("Dados inválidos!");
+        if (!id || !nome || !cpf || !telefone || !email || !cau) {
+            throw new Error("Dados inválidos!");
         }
         this.cau = cau;
+    }
+
+    get cau() {
+        return this.cau;
+    }
+
+    exibirDados() {
+        super.exibirDados();
+        console.log(`CAU: ${this.cau}`);
+
     }
 
 }

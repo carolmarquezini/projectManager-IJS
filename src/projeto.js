@@ -78,10 +78,10 @@ class Projeto {
     }
 
     ultimaManutencao() {
-        if(this.listaDeManutencoes == null || this.listaDeManutencoes.length == 0 ){
+        if (this.listaDeManutencoes == null || this.listaDeManutencoes.length == 0) {
             return null
         }
-        return this.listaDeManutencoes[this.listaDeManutencoes.length-1]
+        return this.listaDeManutencoes[this.listaDeManutencoes.length - 1]
     }
 
 }
