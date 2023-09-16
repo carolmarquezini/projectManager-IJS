@@ -10,9 +10,9 @@ class Projeto {
     status;
     listaDeCaracteristicasEco = [];
     listaDeManutencoes = [];
-    #requisitosEcologicos = ['USO EFICIENTE DE AGUA', 'BANHEIRO SECO', 
-    'ENERGIA RENOVAVEL', 'MATERIAIS SUSTENTAVEIS', 'TRATAMENTO DE EFLUENTES', 
-    'ACESSIBILIDADE', 'MANUTENCAO ADEQUADA', 'ELIMINACAO ADEQUADA DE RESIDUOS'];
+    #requisitosEcologicos = ['USO EFICIENTE DE AGUA', 'BANHEIRO SECO',
+        'ENERGIA RENOVAVEL', 'MATERIAIS SUSTENTAVEIS', 'TRATAMENTO DE EFLUENTES',
+        'ACESSIBILIDADE', 'MANUTENCAO ADEQUADA', 'ELIMINACAO ADEQUADA DE RESIDUOS'];
 
     constructor(id, engenheiroResponsavel, arquitetoResponsavel, enderecoObra, empreiteiroObra, status) {
         if (!(engenheiroResponsavel instanceof Engenheiro)) {
@@ -70,13 +70,17 @@ class Projeto {
     }
 
     addCaracteristicasEco(caracteristicasEco) {
+        if (this.listaDeCaracteristicasEco == null) {
+            this.listaDeCaracteristicasEco = [];
+        }
+
         this.listaDeCaracteristicasEco.push(caracteristicasEco)
     }
 
     projetoEcologico() {
         let qtdRequisitoAtendido = 0;
 
-        if(this.listaDeCaracteristicasEco == null){
+        if (this.listaDeCaracteristicasEco == null) {
             return false;
         }
 
@@ -94,6 +98,9 @@ class Projeto {
     }
 
     addManutencao(data, servico) {
+        if (this.listaDeManutencoes == null) {
+            this.listaDeManutencoes = [];
+        }
 
         const manutencao = { data, servico };
         this.listaDeManutencoes.push(manutencao);

@@ -9,11 +9,12 @@ O Gerenciador de Banheiros Ecológicos é um projeto desenvolvido como parte de 
 
 - [Problema](#problema)
 - [Solução](#solução)
+- [UML](#uml)
 - [Funcionalidades](#funcionalidades)
+- [Testes](#testes)
 - [Tecnologias](#tecnologias)
   - [Dependências do Desenvolvimento](#dependências-do-desenvolvimento)
 - [Instalação](#instalação)
-- [Implementações Futuras](#implementações-futuras)
 - [Autora](#autora)
 
 ---
@@ -29,97 +30,222 @@ Essa realidade tem impactos profundos, tanto na saúde das pessoas em situação
 Com base no problema exposto,  
 
 - [x] Criar projeto de instalação de banheiros ecológicos.
-A classe Project permite a criação de projetos relacionados à instalação de banheiros ecológicos, o que é fundamental para resolver o problema da falta de infraestrutura.
-
 - [x] Atualizar projeto de instalação de banheiros ecológicos.
-Se for necessário atualizar projetos existentes, você pode adicionar essa funcionalidade ao código.
-
 - [x] Manutenção de projetos de instalação de banheiros ecológicos.
-A classe Project inclui métodos para adicionar e listar manutenções, o que é essencial para garantir que os banheiros ecológicos continuem funcionando adequadamente.
 
 Portanto, as soluções selecionadas incluem a criação e manutenção de projetos de instalação de banheiros ecológicos.
 
 ---
+## UML
+![UML-projeto final](https://github.com/carolmarquezini/projetoFinal-Reprograma-JS/assets/100984525/f3a88c5f-8110-4390-9de3-6fa2f2165c3e)
+
+
+---
 ## Funcionalidades
 
-**Funcionalidades de Usuários:**
+## Funcionalidades de Usuários:
 
-| Função                 | Descrição            | 
-| ---------------------- | ---------------------|
-| get id()               | Retorna id           |
-| get cpf()              | Retorna cpf          |
-| get contact()          | Retorna contato      | 
-| get email()            | Retorna e-mail       | 
-| set email(novoEmail)   | Retorna novo e-mail  | 
+A classe `Usuários` representa os usuários do sistema e inclui os principais atributos necessários para criar um usuário. Ela **encapsula** os detalhes dos dados do usuário em um único objeto.
 
-**Funcionalidades de Engenheiro:**
+| Função                 | Descrição             | 
+| ---------------------- | ----------------------|
+| get id()               | Retorna id            |
+| get cpf()              | Retorna cpf           |
+| get contact()          | Retorna contato       | 
+| get email()            | Retorna e-mail        | 
+| set email(novoEmail)   | Retorna novo e-mail   | 
+| exibirDados()          | exibi todos os dados  | 
 
-| Função                | Descrição            | 
-| --------------------- | ---------------------|
-| get id()              | Retorna id           |
-| get cpf()             | Retorna cpf          |
-| get contact()         | Retorna contato      | 
-| get email()           | Retorna e-mail       | 
-| set email(novoEmail)  | Retorna novo e-mail  |
-| get crea ()           | Retorna crea         | 
-| set crea (novoCrea)   | Retorna novo crea    |
 
-**Funcionalidades de Arquiteto:**
+## Funcionalidades de Engenheiro:
 
-| Função                | Descrição            | 
-| --------------------- | ---------------------|
-| get id()              | Retorna id           |
-| get cpf()             | Retorna cpf          |
-| get contact()         | Retorna contato      | 
-| get email()           | Retorna e-mail       | 
-| set email(novoEmail)  | Retorna novo e-mail  |
-| get cau ()            | Retorna crea         | 
-| set crea (novoCau)    | Retorna novo cau     |
+A classe `Engenheiro` herda da classe `Usuario`, o que representa o conceito de **herança** em POO. Isso permite que a classe Engenheiro compartilhe atributos e métodos comuns com a classe `Usuario`.
 
-**Funcionalidades de Projetos:**
+```jsx
+const { Usuario } = require('./usuario');
 
-| Função                | Descrição            | 
-| --------------------- | ---------------------|
-| get id()              | Retorna id           |
-| get cpf()             | Retorna cpf          |
-| get contact()         | Retorna contato      | 
-| get email()           | Retorna e-mail       | 
-| set email(novoEmail)  | Retorna novo e-mail  |
-| get cau ()            | Retorna crea         | 
-| set crea (novoCau)    | Retorna novo cau     |
+class Engenheiro extends Usuario {
+    crea;
+
+    constructor(id, nome, cpf, telefone, email, crea) {
+        super(id, nome, cpf, telefone, email)
+        if (!id || !nome || !cpf || !telefone || !email || !crea) {
+            throw new Error("Dados inválidos!");
+        }
+        this.crea = crea;
+    }
+
+    get crea() {
+        return this.crea;
+    }
+
+    exibirDados() {
+        super.exibirDados();
+        console.log(`CREA: ${this.crea}`);
+    }
+
+}
+
+
+
+module.exports = {
+    Engenheiro
+}
+```
+
+## Funcionalidades de Arquiteto:
+
+A classe `Arquiteto` também herda de `Usuário` e, com o uso de `super.exibirDados()`, é possível notar a inclusão do número de CAU do arquiteto, demonstrando assim o Polimorfismo.
+
+```jsx
+const { Usuario } = require('./usuario');
+
+class Arquiteto extends Usuario {
+    cau;
+
+    constructor(id, nome, cpf, telefone, email, cau) {
+        super(id, nome, cpf, telefone, email)
+        if (!id || !nome || !cpf || !telefone || !email || !cau) {
+            throw new Error("Dados inválidos!");
+        }
+        this.cau = cau;
+    }
+
+    get cau() {
+        return this.cau;
+    }
+
+    exibirDados() {
+        super.exibirDados();
+        console.log(`CAU: ${this.cau}`);
+
+    }
+
+}
+```
+
+## Funcionalidades de Projetos:
+
+A classe `Projetos` representa o conceito de **composição**, pois ela inclui arquitetos e engenheiros. Possui funcionalidades que auxiliam na determinação se um projeto é ecológico ou não, adicionando características, acompanhando e atualizando manutenções.
+
+**Adicionar Características Ecológicas**
+```jsx
+    addCaracteristicasEco(caracteristicasEco) {
+        if (this.listaDeCaracteristicasEco == null) {
+            this.listaDeCaracteristicasEco = [];
+        }
+
+        this.listaDeCaracteristicasEco.push(caracteristicasEco)
+    }
+```
+Este método adiciona características ecológicas a um projeto. Se a lista de características ecológicas ainda não existe, ela é inicializada.
+
+
+**Verificar se um Projeto é Ecológico**
+
+```jsx
+    projetoEcologico() {
+        let qtdRequisitoAtendido = 0;
+
+        if (this.listaDeCaracteristicasEco == null) {
+            return false;
+        }
+
+        this.listaDeCaracteristicasEco.forEach(element => {
+            if (this.#requisitosEcologicos.includes(element.toUpperCase())) {
+                qtdRequisitoAtendido++;
+            }
+        });
+
+        if (qtdRequisitoAtendido >= 4) {
+            return true
+        }
+
+        return false
+    }
+
+```
+Este método verifica se um projeto é ecológico com base nas características ecológicas definidas. Para ser considerado ecológico, o projeto deve atender a pelo menos 4 requisitos ecológicos.
+
+
+**Adicionar Manutenção**
+
+```jsx
+    addManutencao(data, servico) {
+        if (this.listaDeManutencoes == null) {
+            this.listaDeManutencoes = [];
+        }
+
+        const manutencao = { data, servico };
+        this.listaDeManutencoes.push(manutencao);
+    }
+```
+
+```jsx
+
+    todasManutencoes() {
+        return this.listaDeManutencoes;
+    }
+```
+Este método retorna uma lista de todas as manutenções registradas para o projeto.
+
+
+**Última Manutenção**
+
+```jsx
+    ultimaManutencao() {
+        if (this.listaDeManutencoes == null || this.listaDeManutencoes.length == 0) {
+            return null
+        }
+        return this.listaDeManutencoes[this.listaDeManutencoes.length - 1]
+    }
+
+}
+```
+Este método retorna informações sobre a última manutenção registrada no projeto.
+
+---
 
 ## Testes
-**Usuários**
-
 
 ```jsx
-{
-    
-}
-```
 
-**Engenheiros**
-```jsx
-{
-    
-    }
-}
-```
+> projetofinal@1.0.0 test
+> jest
 
-**Arquitetos**
-```jsx
-{
-    
-    }
-}
-```
+ PASS  src/usuario.test.js
+ PASS  src/engenheiro.test.js
+  ● Console
 
-**Projetos**
-```jsx
-{
-    
-    }
-}
+    console.log
+      Id: 1
+      at Engenheiro.log (src/usuario.js:45:17)
+    console.log
+      Nome: Carol
+      at Engenheiro.log (src/usuario.js:46:17)
+    console.log
+      CPF: 123456
+
+      at Engenheiro.log (src/usuario.js:47:17)
+    console.log
+      Telefone: 9999999
+      at Engenheiro.log (src/usuario.js:48:17)
+    console.log
+      e-mail: @gmail
+      at Engenheiro.log (src/usuario.js:49:17)
+    console.log
+      CREA: 202320
+      at Engenheiro.log [as exibirDados] (src/engenheiro.js:20:17)
+
+ PASS  src/arquiteto.test.js
+ PASS  src/projeto.test.js
+
+Test Suites: 4 passed, 4 total
+Tests:       21 passed, 21 total
+Snapshots:   0 total
+Time:        3.109 s
+Ran all test suites.
+
 ```
 
 ---
@@ -141,7 +267,7 @@ Portanto, as soluções selecionadas incluem a criação e manutenção de proje
   
 	$ git init
   
-	$ git clone https://github.com/carolmarquezini/upHouse.git
+	$ git clone https://github.com/carolmarquezini/projetoFinal-Reprograma-JS
     ``` 
     
 3. **npm install** - Escreva a seguinte linha para instalar as dependências utilizadas nesse projeto: 
@@ -155,10 +281,6 @@ Portanto, as soluções selecionadas incluem a criação e manutenção de proje
     $ npm run dev
     ```  
 ---
-## Implementações Futuras
-
-
---- 
 ## Autora
 
 <a href="https://www.linkedin.com/in/carolainemarquezini" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>

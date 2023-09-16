@@ -17,5 +17,5 @@ describe("Verificar Arquiteto(a)", () => {
         expect(arquiteto.telefone).toBe(9999999);
         expect(arquiteto.email).toBe('@gmail.com');
         expect(arquiteto.cau).toBe(202320);
-    } )
+    })
 })
