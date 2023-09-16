@@ -254,7 +254,7 @@ Ran all test suites.
 ### Dependências do Desenvolvimento
 - [Jest](https://www.npmjs.com/package/jest) - Jest é uma estrutura de test js, através dele é possível realizar os testes;
 - [Nodemon](https://www.npmjs.com/package/nodemon) - Nodemon ajuda no desenvolvimento de sistemas com o Node. js reiniciando automaticamente o servidor;
-- [Supertest](https://www.npmjs.com/package/jest) - SuperTest automatiza a realização dos testes.
+
 
 ---
 ## Instalação
