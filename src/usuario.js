@@ -29,8 +29,16 @@ class Usuario {
         return this.telefone;
     }
 
+    set contato(novoContato){
+        return this.telefone = novoContato;
+    }
+
     get email() {
         return this.email;
+    }
+
+    set email(novoEmail) {
+        return this.email = novoEmail;
     }
 
 }
