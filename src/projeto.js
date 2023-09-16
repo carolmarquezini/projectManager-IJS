@@ -3,76 +3,111 @@ const { Engenheiro } = require('./engenheiro');
 
 class Projeto {
     #id;
-    #technicalManager;
-    #architect
-    address;
-    serviceProvider;
+    #engenheiroResponsavel;
+    #arquitetoResponsavel;
+    enderecoObra;
+    empreiteiroObra;
     status;
-    listMaintenance = [];
+    listaDeCaracteristicasEco = [];
+    listaDeManutencoes = [];
+    #requisitosEcologicos = ['USO EFICIENTE DE AGUA', 'BANHEIRO SECO', 
+    'ENERGIA RENOVAVEL', 'MATERIAIS SUSTENTAVEIS', 'TRATAMENTO DE EFLUENTES', 
+    'ACESSIBILIDADE', 'MANUTENCAO ADEQUADA', 'ELIMINACAO ADEQUADA DE RESIDUOS'];
 
-    constructor(id, technicalManager, architect, address, serviceProvider, status, maintenanceList) {
-        if (!(technicalManager instanceof Engenheiro)) {
+    constructor(id, engenheiroResponsavel, arquitetoResponsavel, enderecoObra, empreiteiroObra, status) {
+        if (!(engenheiroResponsavel instanceof Engenheiro)) {
             throw new Error("Informe um responsável técnico válido!");
         }
 
-        if (!(architect instanceof Arquiteto)) {
+        if (!(arquitetoResponsavel instanceof Arquiteto)) {
             throw new Error("Informe um responsável técnico válido!");
         }
 
-        if (!id || !technicalManager || !address ) {
+        if (!id || !engenheiroResponsavel || !enderecoObra) {
             throw new Error("Dados inválidos!");
         }
-        this.#id = id;
-        this.#technicalManager = technicalManager;
-        this.#architect = architect;
-        this.address = address;
-        this.serviceProvider = serviceProvider;
-        this.status = status;
-        this.listMaintenance = this.listMaintenance;
 
-        if(maintenanceList){
-            this.listMaintenance.push(maintenanceList)
-        }
+        this.#id = id;
+        this.#engenheiroResponsavel = engenheiroResponsavel;
+        this.#arquitetoResponsavel = arquitetoResponsavel;
+        this.enderecoObra = enderecoObra;
+        this.empreiteiroObra = empreiteiroObra;
+        this.status = status;
+        this.listaDeCaracteristicasEco = [];
+        this.listaDeManutencoes = [];
     }
 
     get id() {
         return this.#id;
     }
 
-    get technicalManager() {
-        return this.#technicalManager;
+    get engenheiroResponsavel() {
+        return this.#engenheiroResponsavel;
     }
-    
-    get address() {
-        return this.address;
+
+    get enderecoObra() {
+        return this.enderecoObra;
     }
-    
-    set address(newAddress) {
-        return this.address = newAddress;
+
+    set enderecoObra(novoEndereco) {
+        return this.enderecoObra = novoEndereco;
     }
-    
-    get serviceProvider() {
-        return this.serviceProvider;
+
+    get empreiteiroObra() {
+        return this.empreiteiroObra;
     }
-    
-    set serviceProvider(name) {
-        return this.serviceProvider = name;
+
+    set empreiteiroObra(nome) {
+        return this.empreiteiroObra = nome;
     }
-    
+
     get status() {
         return this.status;
     }
-    
-    set status(newStatus) {
-        return this.status = newStatus;
+
+    set status(novoStatus) {
+        return this.status = novoStatus;
     }
 
-    addMaintenance(date, service){
-        this.listMaintenance.push({date,service});
+    addCaracteristicasEco(caracteristicasEco) {
+        this.listaDeCaracteristicasEco.push(caracteristicasEco)
     }
 
-    getAllMaintenance(){
-        return this.listMaintenance;
+    projetoEcologico() {
+        let qtdRequisitoAtendido = 0;
+
+        if(this.listaDeCaracteristicasEco == null){
+            return false;
+        }
+
+        this.listaDeCaracteristicasEco.forEach(element => {
+            if (this.#requisitosEcologicos.includes(element.toUpperCase())) {
+                qtdRequisitoAtendido++;
+            }
+        });
+
+        if (qtdRequisitoAtendido >= 4) {
+            return true
+        }
+
+        return false
+    }
+
+    addManutencao(data, servico) {
+
+        const manutencao = { data, servico };
+        this.listaDeManutencoes.push(manutencao);
+    }
+
+    todasManutencoes() {
+        return this.listaDeManutencoes;
+    }
+
+    ultimaManutencao() {
+        if (this.listaDeManutencoes == null || this.listaDeManutencoes.length == 0) {
+            return null
+        }
+        return this.listaDeManutencoes[this.listaDeManutencoes.length - 1]
     }
 
 }
