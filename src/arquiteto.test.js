@@ -12,7 +12,6 @@ describe("Verificar Arquiteto(a)", () => {
 
     it("Deve definir corretamente os atribudos que são passados no construtor.", () => {
         let arquiteto = new Arquiteto(1, 'Carol', 123456, 9999999, '@gmail.com', 202320);
-        
         expect(arquiteto.id).toBe(1);
         expect(arquiteto.nome).toBe('Carol');
         expect(arquiteto.telefone).toBe(9999999);

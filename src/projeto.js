@@ -8,9 +8,13 @@ class Projeto {
     enderecoObra;
     empreiteiroObra;
     status;
+    listaDeCaracteristicasEco = [];
     listaDeManutencoes = [];
+    #requisitosEcologicos = ['USO EFICIENTE DE AGUA', 'BANHEIRO SECO', 
+    'ENERGIA RENOVAVEL', 'MATERIAIS SUSTENTAVEIS', 'TRATAMENTO DE EFLUENTES', 
+    'ACESSIBILIDADE', 'MANUTENCAO ADEQUADA', 'ELIMINACAO ADEQUADA DE RESIDUOS'];
 
-    constructor(id, engenheiroResponsavel, arquitetoResponsavel, enderecoObra, empreiteiroObra, status, listaDeManutencao) {
+    constructor(id, engenheiroResponsavel, arquitetoResponsavel, enderecoObra, empreiteiroObra, status) {
         if (!(engenheiroResponsavel instanceof Engenheiro)) {
             throw new Error("Informe um responsável técnico válido!");
         }
@@ -22,17 +26,15 @@ class Projeto {
         if (!id || !engenheiroResponsavel || !enderecoObra) {
             throw new Error("Dados inválidos!");
         }
+
         this.#id = id;
         this.#engenheiroResponsavel = engenheiroResponsavel;
         this.#arquitetoResponsavel = arquitetoResponsavel;
         this.enderecoObra = enderecoObra;
         this.empreiteiroObra = empreiteiroObra;
         this.status = status;
+        this.listaDeCaracteristicasEco = [];
         this.listaDeManutencoes = [];
-
-        if (listaDeManutencao) {
-            this.listaDeManutencoes.push(listaDeManutencao)
-        }
     }
 
     get id() {
@@ -65,6 +67,30 @@ class Projeto {
 
     set status(novoStatus) {
         return this.status = novoStatus;
+    }
+
+    addCaracteristicasEco(caracteristicasEco) {
+        this.listaDeCaracteristicasEco.push(caracteristicasEco)
+    }
+
+    projetoEcologico() {
+        let qtdRequisitoAtendido = 0;
+
+        if(this.listaDeCaracteristicasEco == null){
+            return false;
+        }
+
+        this.listaDeCaracteristicasEco.forEach(element => {
+            if (this.#requisitosEcologicos.includes(element.toUpperCase())) {
+                qtdRequisitoAtendido++;
+            }
+        });
+
+        if (qtdRequisitoAtendido >= 4) {
+            return true
+        }
+
+        return false
     }
 
     addManutencao(data, servico) {

@@ -76,3 +76,33 @@ describe('Teste do funções da propriedade de manutenções', () => {
     })
 
 });
+
+describe('Teste do funções da propriedade de caracteristica de um projeto ecológico', () => {
+    it('Deve adicionar uma nova caracteristica à lista.', () => {
+
+        projeto.addCaracteristicasEco('caracteristica 1')
+
+        expect(projeto.listaDeCaracteristicasEco.length).toBe(1);
+        expect(projeto.listaDeCaracteristicasEco[0]).toEqual('caracteristica 1');
+    });
+    
+    it('Deve retornar projeto ecológico `false` quando a lista estiver vazia', () => {
+        projeto.listaDeCaracteristicasEco = null;
+        expect(projeto.projetoEcologico()).toBe(false);
+    })
+
+    it('Deve retornar projeto ecológico `true` quando atender 4 caracteristicas', () => {
+        
+        projeto.addCaracteristicasEco('MATERIAIS SUSTENTAVEIS')
+        projeto.addCaracteristicasEco('ENERGIA RENOVAVEL')
+        projeto.addCaracteristicasEco('USO EFICIENTE DE AGUA')
+        projeto.addCaracteristicasEco('NÃO ECOLÓGICO')
+       
+        expect(projeto.projetoEcologico()).toBe(false);
+        
+        projeto.addCaracteristicasEco('MATERIAIS SUSTENTAVEIS')
+
+        expect(projeto.projetoEcologico()).toBe(true);
+    })
+
+});
