@@ -1,4 +1,4 @@
-## Gerenciador de projetos
+## GERENCIADOR DE PROJETOS DE BANHEIROS ECOLÓGICOS
 
 **Descrição do projeto**
 
