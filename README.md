@@ -84,8 +84,8 @@ O conceito de **composição** é representado na classe `Projetos`, pois ele re
 
 Na classe `Projetos` tem funcionalidades que devem contribuir para definir se um projeto é ecológico ou não, adiciona as caracteristicas, acompanha e atualiza manutenções.
 
-```
-    addCaracteristicasEco(d) {
+```jsx
+    addCaracteristicasEco(caracteristicasEco) {
         if (this.listaDeCaracteristicasEco == null) {
             this.listaDeCaracteristicasEco = [];
         }
@@ -94,7 +94,7 @@ Na classe `Projetos` tem funcionalidades que devem contribuir para definir se um
     }
 ```
 
-```
+```jsx
     projetoEcologico() {
         let qtdRequisitoAtendido = 0;
 
@@ -117,7 +117,7 @@ Na classe `Projetos` tem funcionalidades que devem contribuir para definir se um
 
 ```
 
-```
+```jsx
     addManutencao(data, servico) {
         if (this.listaDeManutencoes == null) {
             this.listaDeManutencoes = [];
@@ -128,14 +128,14 @@ Na classe `Projetos` tem funcionalidades que devem contribuir para definir se um
     }
 ```
 
-```
+```jsx
 
     todasManutencoes() {
         return this.listaDeManutencoes;
     }
 ```
 
-```
+```jsx
     ultimaManutencao() {
         if (this.listaDeManutencoes == null || this.listaDeManutencoes.length == 0) {
             return null
