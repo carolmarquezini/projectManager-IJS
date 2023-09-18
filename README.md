@@ -1,6 +1,5 @@
 ## GERENCIADOR DE PROJETOS DE BANHEIROS ECOLÓGICOS ♻️
 
-
 **Descrição do projeto**
 
 O Gerenciador de Banheiros Ecológicos é um projeto desenvolvido como parte de um curso de programação em JavaScript, que abrange os princípios de Programação Orientada a Objetos (POO), teste de código e boas práticas de desenvolvimento. O projeto tem um objetivo social fundamental: fornecer acesso a banheiros ecológicos para moradores de rua, melhorando sua qualidade de vida e promovendo a higiene pessoal.
@@ -14,7 +13,7 @@ O Gerenciador de Banheiros Ecológicos é um projeto desenvolvido como parte de 
 - [Funcionalidades](#funcionalidades)
 - [Testes](#testes)
 - [Tecnologias](#tecnologias)
-  - [Dependências do Desenvolvimento](#dependências-do-desenvolvimento)
+  - [Dependência do Desenvolvimento](#dependência-do-desenvolvimento)
 - [Instalação](#instalação)
 - [Autora](#autora)
 
@@ -252,9 +251,8 @@ Ran all test suites.
 ---
 ## Tecnologias
 
-### Dependências do Desenvolvimento
+### Dependência do Desenvolvimento
 - [Jest](https://www.npmjs.com/package/jest) - Jest é uma estrutura de test js, através dele é possível realizar os testes;
-- [Nodemon](https://www.npmjs.com/package/nodemon) - Nodemon ajuda no desenvolvimento de sistemas com o Node. js reiniciando automaticamente o servidor;
 
 
 ---
@@ -286,6 +284,5 @@ Ran all test suites.
 
 <a href="https://www.linkedin.com/in/carolainemarquezini" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
 
-![FOTO](https://user-images.githubusercontent.com/100984525/181692435-1f6fd859-60cd-4541-b2ad-93b1b842da3a.jpeg)
-
+<img src="https://user-images.githubusercontent.com/100984525/181692435-1f6fd859-60cd-4541-b2ad-93b1b842da3a.jpeg" width="300">
 

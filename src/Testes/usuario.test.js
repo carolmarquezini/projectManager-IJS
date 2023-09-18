@@ -1,4 +1,4 @@
-const { Usuario } = require('./usuario')
+const { Usuario } = require('../Classes/usuario')
 
 let usuario = new Usuario(1, 'Carol', 123456, 9999999, '@gmail');
 
