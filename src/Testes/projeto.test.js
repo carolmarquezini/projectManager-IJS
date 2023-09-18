@@ -1,6 +1,6 @@
-const { Projeto } = require('./projeto')
-const { Engenheiro } = require('./engenheiro');
-const { Arquiteto } = require('./arquiteto')
+const { Projeto } = require('../Classes/projeto')
+const { Engenheiro } = require('../Classes/engenheiro');
+const { Arquiteto } = require('../Classes/arquiteto')
 
 let arquiteto = new Arquiteto(1, 'Carol', 123456, 9999999, '@gmail', 202320);
 let engenheiro = new Engenheiro(1, 'Carol', 123456, 9999999, '@gmail', 202320);

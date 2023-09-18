@@ -1,4 +1,4 @@
-const { Engenheiro } = require('./engenheiro')
+const { Engenheiro } = require('../Classes/engenheiro')
 
 describe("Verificar Engenheiro(a)", () => {
     it("Retornar inválido caso não seja passado os atributos do construtor", () => {

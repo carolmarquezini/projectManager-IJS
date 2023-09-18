@@ -1,6 +1,5 @@
 ## GERENCIADOR DE PROJETOS DE BANHEIROS ECOLÓGICOS ♻️
 
-
 **Descrição do projeto**
 
 O Gerenciador de Banheiros Ecológicos é um projeto desenvolvido como parte de um curso de programação em JavaScript, que abrange os princípios de Programação Orientada a Objetos (POO), teste de código e boas práticas de desenvolvimento. O projeto tem um objetivo social fundamental: fornecer acesso a banheiros ecológicos para moradores de rua, melhorando sua qualidade de vida e promovendo a higiene pessoal.
